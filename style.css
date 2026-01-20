@@ -332,3 +332,11 @@ body {
     flex-direction: column;
   }
 }
+.filter-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: #374151;
+}
+
