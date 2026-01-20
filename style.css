@@ -1,1 +1,334 @@
+/* =========================================================
+   TARIFARIO UNH – style.css
+   ========================================================= */
 
+/* -------- RESET BÁSICO -------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: #f4f6f9;
+  color: #1f2933;
+  line-height: 1.5;
+}
+
+/* -------- HEADER -------- */
+.site-header {
+  background: linear-gradient(135deg, #003866, #005aa3);
+  color: #fff;
+  padding: 24px 16px;
+  text-align: center;
+}
+
+.site-header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 6px;
+}
+
+.site-header .subtitle {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* -------- CONTAINER -------- */
+.container {
+  max-width: 1200px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+/* -------- CONTROLS / FILTROS -------- */
+.controls {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  margin-bottom: 20px;
+}
+
+.search-wrap input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+}
+
+.filters-wrap {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.filter-select {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 0.9rem;
+  background: #fff;
+}
+
+.btn-export {
+  background: #c62828;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-export:hover {
+  background: #b71c1c;
+}
+
+/* -------- MONTO SLIDER -------- */
+.monto-filter {
+  margin-top: 16px;
+}
+
+.monto-label {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.slider-wrap {
+  display: flex;
+  gap: 10px;
+}
+
+.slider-wrap input[type="range"] {
+  width: 100%;
+}
+
+.monto-values {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-top: 4px;
+  color: #374151;
+}
+
+/* -------- STATUS -------- */
+.status {
+  text-align: center;
+  padding: 12px;
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+/* -------- WARNING -------- */
+.tarifa-warning {
+  background: #fff8e1;
+  border-left: 5px solid #ffb300;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  font-size: 0.85rem;
+  color: #5f4b00;
+  border-radius: 6px;
+}
+
+/* -------- CARDS -------- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tag-origen {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #0d47a1;
+  background: #e3f2fd;
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 999px;
+  align-self: flex-start;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+.meta {
+  font-size: 0.85rem;
+  color: #374151;
+}
+
+/* -------- ACTIONS -------- */
+.actions {
+  margin-top: auto;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  flex: 1;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-requisitos {
+  background: #003866;
+  color: #fff;
+}
+
+.btn-requisitos:hover {
+  background: #002f57;
+}
+
+.btn-mail {
+  background: #6d28d9;
+  color: #fff;
+}
+
+.btn-mail:hover {
+  background: #5b21b6;
+}
+
+.btn-ws {
+  background: #25d366;
+  color: #fff;
+}
+
+.btn-ws:hover {
+  background: #1ebe5d;
+}
+
+/* -------- PAGINACIÓN -------- */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 20px;
+}
+
+.page-btn {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.page-btn.active {
+  background: #003866;
+  color: #fff;
+  border-color: #003866;
+}
+
+/* -------- MODAL -------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-overlay.hidden {
+  display: none;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 14px;
+  max-width: 600px;
+  width: 90%;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  background: none;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: #374151;
+}
+
+.modal-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.modal-meta p {
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+}
+
+.modal-meta a {
+  color: #003866;
+  text-decoration: none;
+}
+
+.req-title {
+  margin-top: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.modal-body ul {
+  margin-top: 8px;
+  padding-left: 18px;
+}
+
+.modal-body li {
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+}
+
+/* -------- CALCULADORA -------- */
+.calc-section {
+  margin-top: 14px;
+}
+
+.estimation-result {
+  font-size: 0.85rem;
+  color: #374151;
+}
+
+/* -------- RESPONSIVE -------- */
+@media (max-width: 600px) {
+  .filters-wrap {
+    flex-direction: column;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+}
