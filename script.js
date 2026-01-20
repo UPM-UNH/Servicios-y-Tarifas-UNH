@@ -33,6 +33,7 @@ const minMontoInput = document.getElementById("minMonto");
 const maxMontoInput = document.getElementById("maxMonto");
 const minMontoValue = document.getElementById("minMontoValue");
 const maxMontoValue = document.getElementById("maxMontoValue");
+const freeFilter = document.getElementById("freeFilter");
 
 /* Modal */
 const modalOverlay = document.getElementById("modalOverlay");
@@ -196,8 +197,7 @@ function populateUnidadFilter() {
 function applyFilters() {
   const q = searchInput.value.trim();
   const unidad = unidadFilter.value;
-  const min = Math.min(+minMontoInput.value, +maxMontoInput.value);
-  const max = Math.max(+minMontoInput.value, +maxMontoInput.value);
+  const soloGratis = freeFilter?.checked;
 
   let results = [...data];
 
@@ -205,8 +205,17 @@ function applyFilters() {
     results = fuse.search(q).map(r => r.item);
   }
 
-  if (unidad) results = results.filter(d => d.unidad === unidad);
-  results = results.filter(d => d.monto >= min && d.monto <= max);
+  if (unidad) {
+    results = results.filter(d => d.unidad === unidad);
+  }
+
+  if (soloGratis) {
+    results = results.filter(d => d.monto === 0);
+  } else {
+    const min = Math.min(+minMontoInput.value, +maxMontoInput.value);
+    const max = Math.max(+minMontoInput.value, +maxMontoInput.value);
+    results = results.filter(d => d.monto >= min && d.monto <= max);
+  }
 
   results.sort((a, b) =>
     a.origen.toLowerCase() === "tupa" ? -1 : 1
@@ -215,6 +224,7 @@ function applyFilters() {
   filteredData = results;
   renderPage(1);
 }
+
 
 /* =======================
    RENDER
@@ -279,6 +289,7 @@ function renderPagination(totalPages) {
 ======================= */
 
 function openModal(item) {
+  modalTitle.dataset.monto = item.monto;
   modalTitle.textContent = item.proceso || item.tarifa;
   modalUnidad.textContent = item.unidad;
   modalArea.textContent = item.area;
@@ -306,9 +317,77 @@ unidadFilter.onchange = applyFilters;
 minMontoInput.oninput = applyFilters;
 maxMontoInput.oninput = applyFilters;
 modalCloseBtn.onclick = () => modalOverlay.classList.add("hidden");
+if (freeFilter) {
+  freeFilter.onchange = applyFilters;
+}
 
 /* =======================
    INIT
 ======================= */
+
+canalSelect.onchange = () => {
+  const monto = parseFloat(
+    modalTitle.dataset.monto || 0
+  );
+
+  let comision = 0;
+
+  switch (canalSelect.value) {
+    case "caja_unh":
+      comision = monto >= 20 ? 1 : 0;
+      break;
+    case "bn_fijo":
+      comision = monto <= 144 ? 1.8 : 0;
+      break;
+    case "bn_pct":
+      comision = monto > 144 ? monto * 0.0125 : 0;
+      break;
+    case "caja_huancayo":
+      comision = 1;
+      break;
+    case "niubiz":
+      comision = monto * 0.058;
+      break;
+  }
+
+  estimationResult.innerHTML = `
+    <strong>Monto base:</strong> S/ ${monto.toFixed(2)}<br>
+    <strong>Comisión:</strong> S/ ${comision.toFixed(2)}<br>
+    <strong>Total estimado:</strong> <b>S/ ${(monto + comision).toFixed(2)}</b>
+  `;
+};
+
+exportPdfBtn.onclick = () => {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  const now = new Date();
+  const fecha = now.toLocaleDateString("es-PE");
+  const hora = now.toLocaleTimeString("es-PE");
+
+  doc.setFontSize(14);
+  doc.text("Tarifario TUPA / TUSNE – UNH", 14, 15);
+
+  doc.setFontSize(9);
+  doc.text(`Exportado el: ${fecha} ${hora}`, 14, 22);
+
+  const rows = filteredData.map(d => [
+    d.origen,
+    d.proceso,
+    d.tarifa,
+    `S/ ${d.monto.toFixed(2)}`,
+    d.unidad
+  ]);
+
+  doc.autoTable({
+    startY: 28,
+    head: [["Origen", "Proceso", "Tarifa", "Monto", "Unidad"]],
+    body: rows,
+    styles: { fontSize: 8 }
+  });
+
+  doc.save("Tarifario_UNH.pdf");
+};
+
 
 loadCSV();
