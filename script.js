@@ -403,19 +403,42 @@ exportPdfBtn.onclick = () => {
   });
 
   /* 3️⃣ Mensaje previo a la tabla */
-  // Fuente consistente con subtítulos
-   doc.setFont("helvetica", "normal");
-   doc.setFontSize(9);
-   doc.setTextColor(90); // gris oscuro institucional
+  // ===============================
+// Nota institucional (PDF)
+// ===============================
+doc.setFont("helvetica", "normal");
+doc.setFontSize(9);
+doc.setTextColor(90);
 
-   const warningText =
-     "⚠️ Los montos observados están sujetos al cobro de comisiones adicionales según la entidad recaudadora";
+const warningText =
+  "Los montos consignados corresponden a tarifas base y están sujetos " +
+  "al cobro de comisiones adicionales según la entidad recaudadora.";
 
-   doc.text(warningText, 40, 82, {
-     maxWidth: pageWidth - 80,
-     align: "center"
-   });
+// Dimensiones
+const noteX = 40;
+const noteY = 78;
+const noteWidth = pageWidth - 80;
+const notePadding = 8;
 
+// Calcular alto del texto
+const textLines = doc.splitTextToSize(warningText, noteWidth - notePadding * 2);
+const noteHeight = textLines.length * 11 + notePadding * 2;
+
+// Fondo de la nota
+doc.setFillColor(245, 245, 245); // gris muy claro
+doc.rect(noteX, noteY, noteWidth, noteHeight, "F");
+
+// Borde de la nota
+doc.setDrawColor(200);
+doc.rect(noteX, noteY, noteWidth, noteHeight);
+
+// Texto
+doc.text(
+  textLines,
+  noteX + noteWidth / 2,
+  noteY + notePadding + 9,
+  { align: "center" }
+);
 
   /* 4️⃣ Construcción de la tabla */
   const tableData = filteredData.map(item => [
