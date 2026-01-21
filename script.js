@@ -89,6 +89,16 @@ function escapeHTML(text) {
       )
     : "";
 }
+function formatRequisitosForPDF(text) {
+  if (!text) return "";
+
+  return text
+    .split(/\n|;|\./)
+    .map(r => r.trim())
+    .filter(r => r.length > 0)
+    .map(r => "• " + r)
+    .join("\n");
+}
 
 /* =======================
    MAPEO DE FILA
@@ -447,7 +457,7 @@ doc.text(
   `S/ ${item.monto.toFixed(2)}`,
   item.origen,
   item.unidad,
-  item.requisitos
+  formatRequisitosForPDF(item.requisitos)
 ]);
 
   doc.autoTable({
