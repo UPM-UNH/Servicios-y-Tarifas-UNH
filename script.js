@@ -403,17 +403,20 @@ exportPdfBtn.onclick = () => {
   });
 
   /* 3️⃣ Mensaje previo a la tabla */
-  doc.setFontSize(10);
-  doc.setTextColor(80);
+  // Fuente consistente con subtítulos
+   doc.setFont("helvetica", "normal");
+   doc.setFontSize(9);
+   doc.setTextColor(90); // gris oscuro institucional
 
-  const warningText =
-    "⚠️ Los montos consignados corresponden a tarifas base y están sujetos " +
-    "al cobro de comisiones adicionales según la entidad recaudadora.";
+   const warningText =
+     "⚠️ Los montos observados corresponden a tarifas base y están sujetos " +
+     "al cobro de comisiones adicionales según la entidad recaudadora.";
 
-  doc.text(warningText, 40, 82, {
-    maxWidth: pageWidth - 80,
-    align: "center"
-  });
+   doc.text(warningText, 40, 82, {
+     maxWidth: pageWidth - 80,
+     align: "center"
+   });
+
 
   /* 4️⃣ Construcción de la tabla */
   const tableData = filteredData.map(item => [
