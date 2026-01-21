@@ -90,32 +90,6 @@ body {
   background: #b71c1c;
 }
 
-/* -------- MONTO SLIDER -------- */
-.monto-filter {
-  margin-top: 16px;
-}
-
-.monto-label {
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-.slider-wrap {
-  display: flex;
-  gap: 10px;
-}
-
-.slider-wrap input[type="range"] {
-  width: 100%;
-}
-
-.monto-values {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.85rem;
-  margin-top: 4px;
-  color: #374151;
-}
 
 /* -------- STATUS -------- */
 .status {
