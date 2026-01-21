@@ -231,10 +231,18 @@ function renderCards(items) {
       <div class="meta"><strong>Área:</strong> ${escapeHTML(item.area)}</div>
 
       <div class="actions">
-        <button class="btn btn-requisitos">Requisitos</button>
-        <a class="btn btn-mail" href="mailto:${item.correo}">Correo</a>
+        <button class="btn btn-requisitos">
+         <i class="bi bi-list-check"></i> Requisitos
+        </button>
+
+        <a class="btn btn-mail" href="mailto:${item.correo}">
+        <i class="bi bi-envelope-fill"></i> Correo
+        </a>
+
         <a class="btn btn-ws" target="_blank"
-           href="https://wa.me/51${item.celular}">WhatsApp</a>
+        href="https://wa.me/51${item.celular}">
+        <i class="bi bi-whatsapp"></i> WhatsApp
+        </a>
       </div>
     `;
 
