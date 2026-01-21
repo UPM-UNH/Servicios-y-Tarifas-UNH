@@ -409,8 +409,7 @@ exportPdfBtn.onclick = () => {
    doc.setTextColor(90); // gris oscuro institucional
 
    const warningText =
-     "⚠️ Los montos observados corresponden a tarifas base y están sujetos " +
-     "al cobro de comisiones adicionales según la entidad recaudadora.";
+     "⚠️ Los montos observados están sujetos al cobro de comisiones adicionales según la entidad recaudadora";
 
    doc.text(warningText, 40, 82, {
      maxWidth: pageWidth - 80,
