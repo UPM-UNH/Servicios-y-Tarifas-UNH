@@ -143,7 +143,6 @@ function loadCSV() {
         threshold: 0.35
       });
 
-      initMontoRange();
       populateUnidadFilter();
       applyFilters();
 
@@ -188,10 +187,6 @@ function applyFilters() {
 
   if (soloGratis) {
     results = results.filter(d => d.monto === 0);
-  } else {
-    const min = Math.min(+minMontoInput.value, +maxMontoInput.value);
-    const max = Math.max(+minMontoInput.value, +maxMontoInput.value);
-    results = results.filter(d => d.monto >= min && d.monto <= max);
   }
 
   results.sort((a, b) =>
@@ -291,8 +286,6 @@ function openModal(item) {
 
 searchInput.oninput = applyFilters;
 unidadFilter.onchange = applyFilters;
-minMontoInput.oninput = applyFilters;
-maxMontoInput.oninput = applyFilters;
 modalCloseBtn.onclick = () => modalOverlay.classList.add("hidden");
 if (freeFilter) {
   freeFilter.onchange = applyFilters;
@@ -365,6 +358,5 @@ exportPdfBtn.onclick = () => {
 
   doc.save("Tarifario_UNH.pdf");
 };
-
 
 loadCSV();
