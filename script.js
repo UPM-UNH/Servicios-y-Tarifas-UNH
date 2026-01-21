@@ -111,6 +111,9 @@ function updateCanalOptions(item) {
   // Caja UNH: solo si monto >= 20
   canalSelect.querySelector('option[value="caja_unh"]').disabled = monto < 20;
 
+  // Caja UNH gratuito: solo si monto < 20
+  canalSelect.querySelector('option[value="caja_unh_gratis"]').disabled = monto >= 20;
+
   // Banco Nación fijo: solo hasta 144
   canalSelect.querySelector('option[value="bn_fijo"]').disabled = monto > 144;
 
@@ -354,6 +357,9 @@ canalSelect.onchange = () => {
     case "caja_unh":
       comision = monto >= 20 ? 1 : 0;
       break;
+    case "caja_unh_gratis":
+       comision = 0;
+       break;
     case "bn_fijo":
       comision = monto <= 144 ? 1.8 : 0;
       break;
