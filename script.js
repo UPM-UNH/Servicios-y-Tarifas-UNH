@@ -354,7 +354,18 @@ function openModal(item) {
     .join("")}</ul>`;
 
    updateCanalOptions(item);
-   
+   // 🔒 Si es gratuito, deshabilitar canal
+  if (item.monto === 0) {
+  canalSelect.value = "";
+  canalSelect.disabled = true;
+
+  estimationResult.innerHTML = `
+    <strong>Este servicio no requiere pago.</strong>
+  `;
+} else {
+  canalSelect.disabled = false;
+  estimationResult.textContent = "";
+}
    modalOverlay.classList.remove("hidden");
 }
 
