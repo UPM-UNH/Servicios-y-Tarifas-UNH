@@ -389,8 +389,8 @@ canalSelect.onchange = () => {
 
     case "caja_unh_gratis":
       comision = 0;
-      mensajeEspecial = "Este servicio no requiere código de pago o se debe consultar presencialmente.";
-      break;
+      codigoMostrar = codigosRaw.split(/\r?\n/)[0] || "";
+    break;
 
     case "bn_fijo":
     case "bn_pct":
