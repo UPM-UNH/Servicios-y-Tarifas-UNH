@@ -246,7 +246,8 @@ function applyFilters() {
   }
 
   if (unidad) {
-    results = results.filter(d => d.unidad === unidad);
+    results = results.filter(d =>
+  normalizeKey(d.unidad) === normalizeKey(unidad));
   }
 
   if (soloGratis) {
