@@ -204,7 +204,7 @@ function loadCSV() {
 
       fuse = new Fuse(data, {
         keys: ["proceso", "tarifa", "unidad", "area"],
-        threshold: 0.35
+        threshold: 0.30
       });
 
       populateUnidadFilter();
