@@ -709,3 +709,13 @@ body {
 .btn:hover {
   color: white !important;
 }
+
+.modal-guide {
+  font-size: 0.85rem;
+  color: #374151;
+  margin-bottom: 14px;
+  padding: 8px 12px;
+  background: #f3f6fa;
+  border-left: 4px solid #003866;
+  border-radius: 6px;
+}
