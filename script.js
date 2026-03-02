@@ -571,7 +571,7 @@ function renderCards(items) {
 
       <div class="actions">
         <button class="btn btn-requisitos">
-         <i class="bi bi-list-check"></i> Requisitos
+         <i class="bi bi-list-check"></i> Detalles
         </button>
 
         <a class="btn btn-mail" href="mailto:${item.correo}">
