@@ -75,7 +75,7 @@ body {
 
 .filters-wrap {
   flex: 1 1 400px;
-  margin-top: 0; /* 🔥 quitamos el margin-top anterior */
+  margin-top: 0; 
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -183,11 +183,11 @@ body {
   cursor: pointer;
   border: none;
   padding: 10px 8px;
-  min-height: 60px;              /* 🔥 misma altura para todos */
-  display: flex;                 /* 🔥 activamos flex */
-  flex-direction: column;        /* icono arriba / texto abajo */
-  justify-content: center;       /* 🔥 centra verticalmente */
-  align-items: center;           /* 🔥 centra horizontalmente */
+  min-height: 60px;              
+  display: flex;                 
+  flex-direction: column;        
+  justify-content: center;       
+  align-items: center;           
   text-align: center;
   gap: 4px;
 }
@@ -225,7 +225,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap; /* 🔥 permite salto de línea */
+  flex-wrap: wrap; 
   gap: 6px;
   margin-top: 20px;
 }
@@ -310,9 +310,9 @@ body {
 
 .modal-body ul {
   margin-top: 8px;
-  padding-left: 24px;   /* 🔥 más espacio real */
-  list-style-position: outside; /* 🔥 asegura viñeta fuera del texto */
-  list-style-type: disc; /* 🔥 fuerza viñeta */
+  padding-left: 24px;   
+  list-style-position: outside; 
+  list-style-type: disc; 
 }
 
 .modal-body li {
